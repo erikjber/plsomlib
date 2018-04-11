@@ -29,6 +29,6 @@ for(double [] data:trainingData)
     net.train(data);
 }
 // Use the network to classify input.
-int [] classification  = network.classify(input);
+int [] classification  = net.classify(input);
 ```
 
