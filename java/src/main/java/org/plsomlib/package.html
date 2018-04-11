@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+  @(#)package.html	
+
+-->
+</head>
+<body bgcolor="white">
+
+Main package for SOM and PLSOM implementations.<br>
+
+<h2>Package Specification</h2>
+
+SOM and PLSOM both extend the MapBaseImpl class.<br>
+
+MapBaseImpl implements the MapBase interface, which declares some
+common methods. MapBaseImpl defines these methods<br>
+
+and implements some methods for useful tasks and reading/writing XML
+files.<br>
+
+<br>
+
+Usage example, PLSOM:<br>
+
+<pre>
+ //create a new PLSOM with 2 input dimensions, 2 output dimensions and 2500 nodes.
+ PLSOM plsom = new PLSOM(2,50,50);
+ //set the neighbourhood range of the PLSOM
+ plsom.setNeighbourhoodRange(60);
+ //create a variable to hold training data.
+ double [] tmp = new double[2];
+ Random r = new Random(1);
+ //train the PLSOM with 2000 random inputs
+ for ( int x = 0;x&lt; 2000;x++ )
+ {
+   //generate random input
+   tmp[0] = r.nextDouble()*2-1;
+   tmp[1] = r.nextDouble()*2-1;
+   //train the PLSOM, thus updating the weights.
+   plsom.train(tmp);
+ }
+ //test the PLSOM
+ tmp[0] = r.nextDouble()*2-1;
+ tmp[1] = r.nextDouble()*2-1;
+ plsom.setInput(tmp);
+ int [] p = plsom.classify();
+ //print the location of the winning node
+ System.err.println("Input [" + tmp[0]+","+tmp[1]+"] maps to node ["+ p[0]+","+p[1]+"]");
+
+</pre>
+
+The SOM class is used in a similar way, but requires a<span style="font-family: monospace;"> </span>SOMTrainer object to train it.
+<br>
+<pre>	
+ //create a new SOM with 2 input dimensions, 2 output dimensions and 2500 nodes. 
+ SOM som = new SOM(2,w,h);	
+ //create a variable to hold training data.
+ double [] tmp = new double[2];
+ Random r = new Random(1);
+ //create the SOMTrainer default implementation to train the SOM
+ SOMTrainer somTrainer = new SOMTrainer(som);
+ //set the SOMTrainer parameters
+ somTrainer.setLearningRate(0.8);
+ somTrainer.setNeighbourhoodSize(60);
+ //train the SOM with 2000 random inputs
+ for ( int x = 0;x&lt; count;x++ )
+ {
+   //generate random input
+   tmp[0] = r.nextDouble()*2-1;
+   tmp[1] = r.nextDouble()*2-1;
+   //train the SOM, thus updating the weights
+   somTrainer.setInput(tmp);
+ }
+ //test the SOM
+ tmp[0] = r.nextDouble()*2-1;
+ tmp[1] = r.nextDouble()*2-1;
+ som.setInput(tmp);
+ int [] p = som.classify();
+ //print the location of the winning node
+ System.err.println("Input [" + tmp[0]+","+tmp[1]+"] maps to node ["+ p[0]+","+p[1]+"]");
+</pre>
+
+<big>A word about metrics.</big><br>
+Self-Organizing Maps (both SOM and PLSOM) require metrics. Metrics in
+this context is a method for measuring the distance between two points
+in <br>
+either input space (to measure the distance between inputs and weight
+vectors) or output space (to measure the distance between nodes).<br>
+These measures are realized by classes in the org.plsomlib.metrics
+package which implement the InputMetric and OutputMetric interfaces.
+Abstract implementations of these interfaces, InputMetricImpl and
+OutputMetricImpl, are provided to simplify subclassing.<br>
+These classe provide functionality for XML serialization and deserialization.<br>
+<br>
+There are also default implementations that can be used to create a map
+with euclidean input and output spaces and a nodes arranged in a
+rectangular grid, EuclideanInputMetric and
+RectangularEuclideanOutputMetric.<br>
+<br>
+<big>Neighbourhood functions.</big><br>
+Furthermore, SOMs require a neighbourhood function to calculate the interaction between nodes during training.<br>
+These functions are realized by classes in the
+org.plsomlib.neighbourhood package that implement the
+NeighbourhoodFunction interface.<br>
+An abstract implementation, NeighbourhoodFunctionImpl, which provides
+XML serialization and deserialization is provided to simplify
+subclassing.<br>
+A default implementation providing a Gaussian neighbourhood function is
+also provided, in the class GaussianNeighbourhoodFunction.<br>
+<br>
+<big>JUnit tests.</big><br>
+The<span style="font-family: monospace;"> </span>MainTestCase class provides JUnit testing.<br>
+
+<br>
+
+<br>
+<!-- <h2>Related Documentation</h2> -->
+&nbsp;
+<!-- Put @see and @since tags down here. -->
+</body>
+</html>
