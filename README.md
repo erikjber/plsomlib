@@ -2,10 +2,10 @@
 Open source implementation of the PLSOM and PLSOM2 algorithms. Implementations in Java, C#, and C++.
 
 ## Project organisation.
-The code is split into three subdirectories:
-cpp/
-csharp/
-java/
+The code is split into three subdirectories:  
+cpp/  
+csharp/   
+java/  
 
 Each contains a separate language implementation.
 
