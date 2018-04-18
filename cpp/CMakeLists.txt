@@ -3,4 +3,4 @@ project(cpp)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_library(cpp library.cpp library.h metrics/EuclideanMetric.cc metrics/EuclideanMetric.h neighbourhood/GaussianNeighbourhoodFunction.cc neighbourhood/GaussianNeighbourhoodFunction.h)
+add_library(cpp library.cpp library.h metrics/EuclideanMetric.cc metrics/EuclideanMetric.h neighbourhood/GaussianNeighbourhoodFunction.cc neighbourhood/GaussianNeighbourhoodFunction.h util/DiameterBuffer.cc util/DiameterBuffer.h)
