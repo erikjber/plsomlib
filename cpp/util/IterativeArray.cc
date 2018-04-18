@@ -40,9 +40,9 @@ int IterativeArray<V>::getOffset(vector<int> position) const
 }
 
 template<typename V>
-vector<int> IterativeArray<V>::getPosition(int offset)
+vector<int>& IterativeArray<V>::getPosition(int offset)
 {
-  vector<int> res = this->positions[offset];
+  vector<int> &res = this->positions[offset];
   if(res.empty())
   {
     res.resize(factors.size());

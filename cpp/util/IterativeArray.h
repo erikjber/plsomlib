@@ -63,7 +63,7 @@ public:
 
   int getOffset(vector<int> position) const;
 
-  vector<int> getPosition(int offset);
+  vector<int>& getPosition(int offset);
 
   vector<int> getDimensions() const
   {
@@ -79,9 +79,9 @@ public:
    * No bounds checking is performed.
    *
    */
-  V getValueFromOffset(int offset)
+  V& getValueFromOffset(int offset)
   {
-    return data[offset];
+    return data.at(offset);
   }
 
   /**
@@ -111,6 +111,7 @@ public:
   {
     return count;
   }
+
 
 };
 

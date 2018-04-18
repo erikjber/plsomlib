@@ -168,7 +168,7 @@ public:
    *
    * @see #setInput(double [] input)
    */
-  virtual vector<int> classify()
+  virtual vector<int>  classify()
   {
     vector<int> res;
     res.resize(weights.getDimensions().size());

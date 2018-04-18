@@ -12,7 +12,7 @@ void DiameterBuffer::updateBuffer(vector<double> data)
   // find the largest distance between the input and any entry in the buffer
   // as well as the entry in the buffer that is closest to the input
   int minDistIndex = 0;
-  double minDist = std::numeric_limits<double>::max();
+  double minDist = numeric_limits<double>::max();
   double maxNewDist = 0;
   for(int index = 0;index<buffer.size();index++)
   {
