@@ -16,7 +16,7 @@ The C# implementation contains a basic implementation of the PLSOM2 algorithm, n
 The C++ implementation is in progress.
 
 ## Usage
-Regardless of language, the use of a PLSOM2 is the same:
+Regardless of language, the use of a PLSOM2 is similar. Java example:
 ```java
 // Create an object.
 // This example has 60-dimensional input and three output dimensions in a 20x20x20 cube.
