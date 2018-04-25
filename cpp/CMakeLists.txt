@@ -3,4 +3,9 @@ project(cpp)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_library(cpp metrics/EuclideanMetric.cc metrics/EuclideanMetric.h neighbourhood/GaussianNeighbourhoodFunction.cc neighbourhood/GaussianNeighbourhoodFunction.h util/DiameterBuffer.cc util/DiameterBuffer.h util/IterativeArray.cc util/IterativeArray.h MapBase.cc MapBase.h MapBaseImpl.cc MapBaseImpl.h PLSOM2.cc PLSOM2.h)
+include_directories(plsomlib)
+include_directories(plsomlib_tests/lib/googletest/googletest/include plsomlib_tests/lib/googletest/googletest)
+
+add_subdirectory(plsomlib)
+add_subdirectory(plsomlib_tests)
+
