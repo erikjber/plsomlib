@@ -16,7 +16,9 @@ The C# implementation contains a basic implementation of the PLSOM2 algorithm, n
 The C++ implementation is in progress.
 
 ## Usage
-Regardless of language, the use of a PLSOM2 is similar. Java example:
+Regardless of language, the use of a PLSOM2 is similar. 
+
+### Java example:
 ```java
 // Create an object.
 // This example has 60-dimensional input and three output dimensions in a 20x20x20 cube.
@@ -31,4 +33,18 @@ for(double [] data:trainingData)
 // Use the network to classify input.
 int [] classification  = net.classify(input);
 ```
-
+### C++ example:
+```C++
+  // Create an object.
+  // This example has 60-dimensional input and three output dimensions in a 20x20x20 cube.
+  PLSOM2 map(60,{20,20,20});
+  // Set the generalisation factor.
+  map.setNeighbourhoodRange(30);
+  // Train the network.
+  for(int x = 0;x<data.size();x++)
+  {
+    map.train(data[x]);
+  }
+  // Use the network to classify input.
+  vector<int> classification = map.classify(input);
+```
