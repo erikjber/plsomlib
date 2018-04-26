@@ -38,11 +38,13 @@ public:
    * @param inputSize the dimensionality of the input.
    * @param outputDimensions the number and size of output dimensions.
    */
-  PLSOM2(int inputSize, vector<int> outputDimensions) : MapBaseImpl(inputSize, outputDimensions)
+  PLSOM2(int inputSize, std::initializer_list<int> outputDimensions) : MapBaseImpl(inputSize, outputDimensions)
   {
   }
 
-  void setInput(vector<double> input)
+
+
+  void setInput(vector<double>& input)
   {
     this->diameterBuffer.updateBuffer(input);
     MapBaseImpl::setInput(input);
@@ -70,6 +72,11 @@ public:
 
     // calculate the new weights
     updateWeights();
+  }
+
+  void train(vector<double>& data)
+  {
+    MapBaseImpl::train(data);
   }
 
 
@@ -110,6 +117,11 @@ public:
     return res;
   }
 
+  vector<int> classify(vector<double>& input)
+  {
+    return MapBaseImpl::classify(input);
+  }
+
 
 
   double getNeighbourhoodSize()
@@ -117,18 +129,17 @@ public:
     return neighbourhoodSize;
   }
 
+  double getEpsilon()
+  {
+    return epsilon;
+  }
 
+private:
   void setNeighbourhoodSize(double nhSize)
   {
     neighbourhoodSize = nhSize;
   }
 
-
-
-  double getEpsilon()
-  {
-    return epsilon;
-  }
 
 protected:
   /**
@@ -148,13 +159,13 @@ protected:
   {
     for (int x = 0; x < getWeights().getCount(); x++)
     {
-      vector<double>& weight = getWeights().getValueFromOffset(x);
+      vector<double>& weight = getWeights().getPointerFromOffset(x);
       // calculate the neighbourhood scaling, multiply by epsilon
       double anhc = getEpsilon() * getNeighbourhoodScaling(getWeights().getPosition(x), getWinner(), getNeighbourhoodSize());
       // update the weights
       for (int wIndex = 0; wIndex < weight.size(); wIndex++)
       {
-        weight[wIndex] += anhc * (getInput()[wIndex] - weight[wIndex]);
+        (weight)[wIndex] += anhc * (getInput()[wIndex] - (weight)[wIndex]);
       }
     }
   }

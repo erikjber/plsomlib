@@ -6,7 +6,7 @@
 #include "DiameterBuffer.h"
 
 
-void DiameterBuffer::updateBuffer(vector<double> data)
+void DiameterBuffer::updateBuffer(vector<double> &data)
 {
   // calculate the distance from the new input to all inputs in the buffer
   // find the largest distance between the input and any entry in the buffer

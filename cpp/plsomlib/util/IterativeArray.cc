@@ -4,7 +4,20 @@
 
 #include "IterativeArray.h"
 
-template<typename V>
+template<class V>
+IterativeArray<V>::IterativeArray(std::initializer_list<int> dimens): dimensions{dimens}
+{
+  count = 1;
+  for (int x = 0; x < dimensions.size(); x++)
+  {
+    factors.push_back(count);
+    count *= dimensions[x];
+  }
+  data.resize(count);
+  positions.resize(count);
+}
+
+template<class V>
 IterativeArray<V>::IterativeArray(vector<int> dimens): dimensions{dimens}
 {
   count = 1;
@@ -17,7 +30,7 @@ IterativeArray<V>::IterativeArray(vector<int> dimens): dimensions{dimens}
   positions.resize(count);
 }
 
-template<typename V>
+template<class V>
 int IterativeArray<V>::getOffset(vector<int> position) const
 {
   if (position.size() != dimensions.size())
@@ -39,7 +52,7 @@ int IterativeArray<V>::getOffset(vector<int> position) const
   return res;
 }
 
-template<typename V>
+template<class V>
 vector<int>& IterativeArray<V>::getPosition(int offset)
 {
   vector<int> &res = this->positions[offset];
@@ -56,3 +69,7 @@ vector<int>& IterativeArray<V>::getPosition(int offset)
   }
   return res;
 }
+
+
+template class IterativeArray<double>;
+template class IterativeArray<vector<double>>;

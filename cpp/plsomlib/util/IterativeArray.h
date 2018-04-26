@@ -49,17 +49,20 @@ private:
 public:
   using iterator = V*;
 
-  iterator begin() const
+  IterativeArray(vector<int> dimens);
+  IterativeArray(std::initializer_list<int> dimens);
+
+  iterator begin()
   {
     return &data[0];
   };
 
-  iterator end() const
+  iterator end()
   {
     return &data[data.size()];
   }
 
-  IterativeArray(vector<int> dimens);
+
 
   int getOffset(vector<int> position) const;
 
@@ -72,14 +75,14 @@ public:
 
 
   /**
-   * Return the value of at a given offset.
+   * Return a pointer to the value at a given offset.
    * The result is the same as returned by getValue(getPosition(offset)),
    * but completes faster since it is only an array index lookup.
    *
    * No bounds checking is performed.
    *
    */
-  V& getValueFromOffset(int offset)
+  V& getPointerFromOffset(int offset)
   {
     return data.at(offset);
   }
@@ -89,17 +92,17 @@ public:
    * The change in the object is the same as for calling setValue(value,getPosition(offset)),
    * but completes faster since it is only an array index lookup.
    */
-  void setValueAtOffset(V value, int offset)
+  void setValueAtOffset(V& value, int offset)
   {
     data[offset] = value;
   }
 
-  V getValue(vector<int> position)
+  V& getValue(vector<int> position)
   {
     return data[getOffset(position)];
   }
 
-  void setValue(V value, vector<int> position)
+  void setValue(V& value, vector<int> position)
   {
     data[getOffset(position)] = value;
   }

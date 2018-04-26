@@ -27,7 +27,7 @@ public:
     maxDiameter = newDiameter;
   }
 
-  void updateBuffer(vector<double> data);
+  void updateBuffer(vector<double>& data);
 };
 
 

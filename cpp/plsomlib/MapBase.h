@@ -26,7 +26,7 @@ class MapBase
    * @return the weight vector of the node at the given location, any changes will to the returned
    * object will be reflected in the node.
    */
-  virtual vector<double> getWeights (vector<int> location) = 0;
+  virtual vector<double>& getWeights (vector<int> location) = 0;
 
   /**
    * Method for changing the weight vector associated with a given node.
@@ -34,7 +34,7 @@ class MapBase
    * map's dimensions.
    * @param newWeights the new weights.
    */
-  virtual void setWeights (vector<double> newWeights, vector<int> location) = 0;
+  virtual void setWeights (vector<double>& newWeights, vector<int> location) = 0;
 
   /**
    * Classify the most recently applied input according to this SOM.
@@ -49,7 +49,7 @@ class MapBase
    * sure that no other thread modifies the input value before it is
    * classified.
    */
-  virtual vector<int> classify (vector<double> input) = 0;
+  virtual vector<int> classify (vector<double>& input) = 0;
 
   /**
    * Set the input of this map. The input can be classified
@@ -58,7 +58,7 @@ class MapBase
    * @see #classify()
    * @see #train()
    */
-  virtual void setInput (vector<double> input) = 0;
+  virtual void setInput (vector<double>& input) = 0;
 
 
   /**
@@ -71,7 +71,7 @@ class MapBase
    * Train the map using the supplied input.
    * @param input the input to use for training.
    */
-  virtual void train (vector<double> input) = 0;
+  virtual void train (vector<double>& input) = 0;
 
 
   /**

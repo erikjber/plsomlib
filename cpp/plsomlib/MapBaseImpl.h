@@ -114,7 +114,7 @@ public:
    * Access the underlying weight storage implementation.
    * @return the weights
    */
-  IterativeArray<vector<double>> getWeights()
+  IterativeArray<vector<double>>& getWeights()
   {
     return weights;
   }
@@ -129,7 +129,7 @@ public:
    * @return the weight vector of the node at the given location, any changes
    *         will to the returned object will be reflected in the node.
    */
-  vector<double> getWeights(vector<int> location)
+  vector<double>& getWeights(vector<int> location)
   {
     return weights.getValue(location);
   }
@@ -143,7 +143,7 @@ public:
    * @param newWeights
    *            the new weights.
    */
-  void setWeights(vector<double> newWeights, vector<int> location)
+  void setWeights(vector<double>& newWeights, vector<int> location)
   {
     weights.setValue(newWeights, location);
   }
@@ -182,7 +182,7 @@ public:
    * method, used where one wants to be sure that no other thread modifies the
    * input value before it is classified.
    */
-  virtual vector<int> classify(vector<double> input)
+  virtual vector<int> classify(vector<double>& input)
   {
     setInput(input);
     return classify();
@@ -202,7 +202,7 @@ public:
    * @param input
    *            the input to use for training.
    */
-  virtual void train(vector<double> input)
+  virtual void train(vector<double>& input)
   {
     setInput(input);
     train();
@@ -270,7 +270,7 @@ protected:
     int winner = 0;
     for (int x = 0; x < getWeights().getCount(); x++)
     {
-      vector<double> weight = getWeights().getValueFromOffset(x);
+      vector<double>& weight = getWeights().getPointerFromOffset(x);
       double tmp = inputMetric.getDistance(weight, getInput());
       if (tmp < minDist)
       {

@@ -2,7 +2,6 @@ include_directories("../lib/googletest/googletest/include" "../lib/googletest/go
 
 add_executable(runBasicNetworkTests
         iterative_array_check.cc
-        plsom2_check.cc)
+        plsom2_check.cc diameterbuffer_check.cc diameterbuffer_check.h)
 
-target_link_libraries(runBasicNetworkTests gtest gtest_main)
-target_link_libraries(runBasicNetworkTests cpp)
+target_link_libraries(runBasicNetworkTests plsom gtest gtest_main )
