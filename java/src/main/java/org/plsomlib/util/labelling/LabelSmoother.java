@@ -7,11 +7,11 @@ import javax.vecmath.GVector;
 import org.plsomlib.MapBaseImpl;
 import org.plsomlib.metrics.EuclideanMetric;
 import org.plsomlib.metrics.Metric;
+import org.plsomlib.util.Orthonormalisation;
 
-import au.edu.uq.math.Orthonormalisation;
 
 /**
- * Estimates the lable of the actual input by interpolating between the labels
+ * Estimates the label of the actual input by interpolating between the labels
  * of the nodes closest to the input.
  * 
  * 
