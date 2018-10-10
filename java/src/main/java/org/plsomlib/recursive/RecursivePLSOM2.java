@@ -35,15 +35,25 @@ public class RecursivePLSOM2 extends RecursivePLSOM
 		super(inputMetric, outputMetric, nhFunction, alpha, inputSize, outputDimensions);
 	}
 
-	/**
-	 * @param alpha
-	 * @param inputSize
-	 * @param outputDimensions
-	 */
-	public RecursivePLSOM2(double alpha, int inputSize, int... outputDimensions)
-	{
-		super(alpha, inputSize, outputDimensions);
-	}
+    /**
+     * @param alpha
+     * @param inputSize
+     * @param outputDimensions
+     */
+    public RecursivePLSOM2(double alpha, int inputSize, int... outputDimensions)
+    {
+        super(alpha, inputSize, outputDimensions);
+    }
+    /**
+     * @param alpha
+     * @param inputSize
+     * @param outputDimensions
+     */
+    public RecursivePLSOM2(double alpha, int inputSize, double neighbourhoodRange, int... outputDimensions)
+    {
+        super(alpha, inputSize, outputDimensions);
+        setNeighbourhoodRange(neighbourhoodRange);
+    }
 
 	@Override
 	public void setInput(double[] input)
@@ -57,7 +67,10 @@ public class RecursivePLSOM2 extends RecursivePLSOM
 	@Override
 	public void train()
 	{
-		inputBuffer.updateBuffer(getInput());
+	    if(!this.isPredict())
+	    {
+	        inputBuffer.updateBuffer(getInput());
+	    }
 		// do classification
 		setWinner(findWinner());
 		this.excitationBuffer.updateBuffer(getExcitations());

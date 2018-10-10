@@ -48,7 +48,7 @@ public abstract class MapBaseImpl implements MapBase, Serializable
      */
     private int inputDimension;
 
-    private transient Random random;
+    protected transient Random random;
 
     private IterativeArray<double[]> weights;
 
